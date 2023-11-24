@@ -1,17 +1,16 @@
 import React from 'react';
-import './App.css';
-import BookList from './components/BookList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import AddForm from './pages/AddForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className='App-header'>
-        <h1> Book Catalog App </h1>
-      </header>
-      <main>
-        <BookList />
-      </main>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/form' element={<AddForm />} />
+      </Routes>
+    </Router>
   );
 }
 

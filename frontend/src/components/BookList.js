@@ -1,5 +1,6 @@
 import React from 'react';
 import BookItem from './BookItem';
+import { Link } from 'react-router-dom';
 
 const BookList = () => {
     const books = [
@@ -9,14 +10,20 @@ const BookList = () => {
         { id: 4, title: 'book4', author: 'author4', year: 2015, language: 'Arabic', pageNb: 311, type: 'Autobiography' }
     ];
     return (
-        <div className="max-w-2xl mx-auto p-4 ">
+        <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-center text-2xl font-bold mb-4">Book List</h2>
+            <div className="flex justify-end mb-4">
+                <Link to="/form" className="text-green-500">
+                    Add Book
+                </Link>
+            </div>
             <ul className="list-none p-0 flex flex-col space-y-4">
                 {books.map((bookI) => (
                     <BookItem key={bookI.id} book={bookI} />
                 ))}
             </ul>
         </div>
+
     );
 };
 export default BookList;
