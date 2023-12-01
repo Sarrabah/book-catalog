@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
-import AddForm from './pages/AddForm';
+import AddFormPage from './pages/addFormPage';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/form' element={<AddForm />} />
+        <Route path='/form' element={<AddFormPage />} />
       </Routes>
     </Router>
   );
