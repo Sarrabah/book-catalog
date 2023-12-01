@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const AddBookForm = () => {
     const location = useLocation();
@@ -51,7 +51,10 @@ const AddBookForm = () => {
         })
     };
     return (
+        <div>
+        <Link to={'/'} className="flex mt-2 ml-6 underline decoration-indigo-500" >Retour à la page d'accueil </Link>
         <div className="flex items-center justify-center h-screen">
+            
             <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-96">
                 <h2 className="text-xl text-indigo-600 font-bold mb-4 text-center">Book informations </h2>
                 <label htmlFor="title" className="block mb-2">
@@ -122,6 +125,7 @@ const AddBookForm = () => {
                     </button>}
                 </div>
             </form>
+        </div>
         </div>
     );
 };
