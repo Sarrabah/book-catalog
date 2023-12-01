@@ -10,7 +10,7 @@ const BookItem = ({ book, deleteBook }) => {
         alert("The book is deleted !");
         deleteBook(book.id);
     }
-    
+
     return (
         <li className=" border-4 border-indigo-600 pl-2 rounded-md pb-4">
             <h1> <strong className="text-left text-blue-500">{book.title}</strong></h1><br></br>
@@ -23,10 +23,10 @@ const BookItem = ({ book, deleteBook }) => {
             </div>
             <br></br>
             <div className='flex space-x-7'>
-            <button onClick={handleEdit} className=" text-black py-2 px-4 rounded border-2 border-black"> Edit the book </button>
-            <button onClick={handleDelete} className=" text-black py-2 px-4 rounded border-2 border-black "> Delete the book </button>
-       </div> 
-       </li>
+                <button onClick={handleEdit} className=" text-black py-2 px-4 rounded border-2 border-black"> Edit the book </button>
+                <button onClick={handleDelete} className=" text-black py-2 px-4 rounded border-2 border-black "> Delete the book </button>
+            </div>
+        </li>
     )
 }
 export default BookItem;

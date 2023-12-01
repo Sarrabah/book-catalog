@@ -15,10 +15,10 @@ const BookList = () => {
         navigate('/form');
     };
     const deleteBook = (id) => {
-        let arr =[];
-        let j =0;
-        for(let i =0 ; i < books.length ; i++){
-            if (books[i].id !== id){
+        let arr = [];
+        let j = 0;
+        for (let i = 0; i < books.length; i++) {
+            if (books[i].id !== id) {
                 arr[j] = books[i];
                 j++;
             }
