@@ -15,7 +15,11 @@ const book = {
     },
     postBook: (data) => {
         books.push(data);
-        return books; 
+        return books;
+    },
+    deleteB: (id) => {
+        books = books.filter((element) => element.id != id);
+        return books;
     },
 };
 module.exports = book;
