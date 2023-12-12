@@ -33,8 +33,18 @@ const bookController = {
         } catch (error) {
             res.status(404).json({ message: "Not found" })
         }
-
-
+    },
+    editBook: (req, res) => {
+        try {
+            const id = req.body.id;
+            const book = req.body;
+            const bookEdited = books.editB(book, id);
+            res.status(200);
+            res.json(bookEdited);
+        } catch (error) {
+            res.status(500);
+            res.json({ error: "You can't edit the book! Internal error" })
+        }
     }
 };
 module.exports = bookController;

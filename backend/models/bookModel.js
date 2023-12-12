@@ -21,5 +21,20 @@ const book = {
         books = books.filter((element) => element.id != id);
         return books;
     },
+    editB: (book, id) => {
+            let exist =false ;
+            for (let i = 0; i < books.length; i++) {
+                if (books[i].id == id) {
+                    books[i] = book;
+                    exist = true;
+                }
+            }
+            if (exist == false){
+                console.error('Error getting all the books:', error);
+            }
+            else{
+                return books;
+            }              
+    }
 };
 module.exports = book;

@@ -4,6 +4,7 @@ const route = express.Router();
 
 route.get('/books', bookController.allBooks);
 route.post('/book', bookController.postNewBook);
-route.delete('/', bookController.deleteBook);
+route.delete('/book/', bookController.deleteBook);
+route.put('/book', bookController.editBook);
 
 module.exports = route;
