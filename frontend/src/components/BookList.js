@@ -19,11 +19,12 @@ const BookList = () => {
         navigate('/form');
     };
     const deleteBook = async (id) => {
-        let response = await fetch(`http://localhost:3001/api/book/?id=${id}`, {
+        let response1 = await fetch(`http://localhost:3001/api/book/?id=${id}`, {
             method: "delete",
         });
-        let data = await response.json();
-        setBooks(data);
+        let data1 = await response1.json();
+        console.log(data1);
+        setBooks(data1);
     }
 
     return (

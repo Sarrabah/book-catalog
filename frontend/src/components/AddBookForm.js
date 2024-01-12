@@ -30,9 +30,9 @@ const AddBookForm = () => {
             })
         };
     }, []);
-
     const handleSubmit = (e) => {
         const { title, author, year, page, language, type } = formData;
+        //console.log(e);
         e.preventDefault();
         if (!title || !author || !year || !page || !language || !type) {
             alert('Please fill in all fields!');
@@ -42,6 +42,13 @@ const AddBookForm = () => {
             alert('Year or pages cannot be negatif or zero !!');
             return;
         }
+        if (!isEdit) {
+            handleAdd();
+        }
+        else {
+            handleEdit();
+        }
+        return;
     };
     const handleAdd = async () => {
         await fetch('http://localhost:3001/api/book', {
@@ -50,6 +57,7 @@ const AddBookForm = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+                id: formData.id,
                 title: formData.title,
                 author: formData.author,
                 year: formData.year,
@@ -148,10 +156,10 @@ const AddBookForm = () => {
                         />
                     </label>
                     <div className="flex space-x-20">
-                        {!isEdit && <button onClick={handleAdd} type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                        {!isEdit && <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
                             Add a new Book
                         </button>}
-                        {isEdit && <button onClick={handleEdit} type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                        {isEdit && <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
                             Validate the edit
                         </button>}
                     </div>
