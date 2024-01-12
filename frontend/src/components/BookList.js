@@ -13,22 +13,19 @@ const BookList = () => {
     }
     useEffect(() => {
         getbooks();
-    }, [])
+    }, []);
     const navigate = useNavigate();
     const handleClick = () => {
         navigate('/form');
     };
-    const deleteBook = (id) => {
-        let arr = [];
-        let j = 0;
-        for (let i = 0; i < books.length; i++) {
-            if (books[i].id !== id) {
-                arr[j] = books[i];
-                j++;
-            }
-        }
-        setBooks(arr);
+    const deleteBook = async (id) => {
+        let response = await fetch(`http://localhost:3001/api/book/?id=${id}`, {
+            method: "delete",
+        });
+        let data = await response.json();
+        setBooks(data);
     }
+
     return (
         <div className="max-w-2xl mx-auto p-4">
             <h2 className="text-center text-2xl font-bold mb-4">Book List</h2>

@@ -5,6 +5,7 @@ const AddBookForm = () => {
     const location = useLocation();
     const stateLoc = location.state;
     const [formData, setFormData] = useState({
+        id: '',
         title: '',
         author: '',
         year: '',
@@ -18,6 +19,7 @@ const AddBookForm = () => {
     useEffect(() => {
         if (isEdit) {
             setFormData({
+                id: stateLoc.id,
                 title: stateLoc.title,
                 author: stateLoc.author,
                 year: stateLoc.year,
@@ -40,16 +42,46 @@ const AddBookForm = () => {
             alert('Year or pages cannot be negatif or zero !!');
             return;
         }
-
-        setFormData({
-            title: '',
-            author: '',
-            year: '',
-            page: '',
-            language: '',
-            type: ''
-        })
     };
+    const handleAdd = async () => {
+        await fetch('http://localhost:3001/api/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: formData.title,
+                author: formData.author,
+                year: formData.year,
+                page: formData.page,
+                language: formData.language,
+                type: formData.type,
+            }),
+        });
+        window.alert('Ajout valider!');
+        window.location.href = '/';
+    }
+    const handleEdit = async () => {
+        await fetch('http://localhost:3001/api/book', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: formData.id,
+                title: formData.title,
+                author: formData.author,
+                year: formData.year,
+                page: formData.page,
+                language: formData.language,
+                type: formData.type,
+            }),
+
+        });
+        window.alert('Changement valider!');
+        window.location.href = '/';
+    }
+
     return (
         <div>
             <Link to={'/'} className="flex mt-2 ml-6 underline decoration-indigo-500" >Retour à la page d'accueil </Link>
@@ -116,10 +148,10 @@ const AddBookForm = () => {
                         />
                     </label>
                     <div className="flex space-x-20">
-                        {!isEdit && <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                        {!isEdit && <button onClick={handleAdd} type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
                             Add a new Book
                         </button>}
-                        {isEdit && <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
+                        {isEdit && <button onClick={handleEdit} type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
                             Validate the edit
                         </button>}
                     </div>

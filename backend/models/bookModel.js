@@ -23,7 +23,7 @@ const book = {
     },
     editB: (book, id) => {
             let exist =false ;
-            for (let i = 0; i < books.length; i++) {
+            for (let i = 0; i < books.length; i++) { 
                 if (books[i].id == id) {
                     books[i] = book;
                     exist = true;

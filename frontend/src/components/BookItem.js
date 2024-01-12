@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const BookItem = ({ book, deleteBook }) => {
+const BookItem = ({book, deleteBook}) => {
     const navigate = useNavigate();
+    
     const handleEdit = () => {
         navigate('/form', { state: book });
     };
-    const handleDelete = () => {
+    
+    const handleDelete = () => { 
+        deleteBook(book.id); 
         alert("The book is deleted !");
-        deleteBook(book.id);
     }
 
     return (
@@ -17,7 +19,7 @@ const BookItem = ({ book, deleteBook }) => {
             <h3 className='italic'> by {book.author} </h3><br></br>
             <div className='grid grid-cols-2'>
                 <h4> <div className="underline text-green-700">Year:  </div>{book.year}</h4>
-                <h4> <div className="underline text-green-700">Pages: </div> {book.pages}</h4>
+                <h4> <div className="underline text-green-700">Pages: </div> {book.page}</h4>
                 <h4> <div className='underline text-green-700'>Language:   </div>{book.language}</h4>
                 <h4> <div className='underline text-green-700'>Type:   </div>{book.type}</h4>
             </div>
