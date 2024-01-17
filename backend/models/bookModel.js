@@ -14,28 +14,29 @@ const book = {
         }
     },
     postBook: (book) => {
-        book.id = books[(books.length)-1].id +1; 
-        books.push(book);
+        let newId = books[(books.length) - 1].id + 1;
+        let newBook = { ...book, id: newId }
+        books.push(newBook);
         return books;
     },
     deleteB: (id) => {
-        books = books.filter((element) => element.id != id);
+        books = books.filter((element) => element.id !== id);
         return books;
     },
     editB: (book, id) => {
-            let exist =false ;
-            for (let i = 0; i < books.length; i++) { 
-                if (books[i].id == id) {
-                    books[i] = book;
-                    exist = true;
-                }
+        let exist = false;
+        for (let i = 0; i < books.length; i++) {
+            if (books[i].id == id) {
+                books[i] = book;
+                exist = true;
             }
-            if (exist == false){
-                console.error('Error getting all the books:', error);
-            }
-            else{
-                return books;
-            }              
+        }
+        if (exist == false) {
+            console.error('Error getting all the books:', error);
+        }
+        else {
+            return books;
+        }
     }
 };
-module.exports = book;
+module.exports = { book, books };
