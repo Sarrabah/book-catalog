@@ -5,37 +5,57 @@ let books = [
     { id: 3, title: 'book4', author: 'author4', year: 2015, language: 'Arabic', page: 311, type: 'Autobiography' }
 ];
 const book = {
-    getAllBooks: () => {
+    getAllBooks: (res) => {
         try {
             return books;
         } catch (error) {
-            console.error('Error getting all the books:', error);
-            throw error;
+            res.json({ error: error })
         }
     },
-    postBook: (book) => {
-        let newId = books[(books.length) - 1].id + 1;
-        let newBook = { ...book, id: newId }
-        books.push(newBook);
-        return books;
-    },
-    deleteB: (id) => {
-        books = books.filter((element) => element.id !== id);
-        return books;
-    },
-    editB: (book, id) => {
-        let exist = false;
-        for (let i = 0; i < books.length; i++) {
-            if (books[i].id == id) {
-                books[i] = book;
-                exist = true;
+    postBook: (book, res) => {
+        try {
+            if (!book.title || !book.author || !book.language || !book.type || !book.year || !book.page) {
+                throw new Error("please fill all the details");
             }
-        }
-        if (exist == false) {
-            console.error('Error getting all the books:', error);
-        }
-        else {
+            let newId = books[(books.length) - 1].id + 1;
+            let newBook = { id: newId, ...book };
+            books.push(newBook);
             return books;
+        } catch (error) {
+            console.error('There is an error when you post a new book', error);
+            res.json({ error: error.message });
+        }
+
+    },
+    deleteB: (id, res) => {
+        try {
+            let existEle = books.filter((element) => element.id == id);
+            if (existEle.length == 0) {
+                throw new Error("the id doesn't exist ");
+            }
+            books = books.filter((element) => element.id != id);
+            return books;
+        } catch (error) {
+            res.json({ error: error.message });
+        }
+    },
+    editB: (book, id, res) => {
+        try {
+            let exist = false;
+            for (let i = 0; i < books.length; i++) {
+                if (books[i].id == id) {
+                    books[i] = book;
+                    exist = true;
+                }
+            }
+            if (exist == false) {
+                throw new Error("No book to edit");
+            }
+            else {
+                return books;
+            }
+        } catch (error) {
+            res.json({ error: error.message });
         }
     }
 };
