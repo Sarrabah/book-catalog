@@ -32,7 +32,6 @@ const AddBookForm = () => {
     }, []);
     const handleSubmit = (e) => {
         const { title, author, year, page, language, type } = formData;
-        //console.log(e);
         e.preventDefault();
         if (!title || !author || !year || !page || !language || !type) {
             alert('Please fill in all fields!');
@@ -48,46 +47,63 @@ const AddBookForm = () => {
         else {
             handleEdit();
         }
-        return;
     };
+
     const handleAdd = async () => {
-        await fetch('http://localhost:3001/api/book', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: formData.id,
-                title: formData.title,
-                author: formData.author,
-                year: formData.year,
-                page: formData.page,
-                language: formData.language,
-                type: formData.type,
-            }),
-        });
-        window.alert('Ajout valider!');
-        window.location.href = '/';
+        try {
+            let res = await fetch('http://localhost:3001/api/book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: formData.id,
+                    title: formData.title,
+                    author: formData.author,
+                    year: formData.year,
+                    page: formData.page,
+                    language: formData.language,
+                    type: formData.type,
+                }),
+            });
+            if (!res.ok) {
+                throw new Error("Error on fetching data to post a new book");
+            }
+            window.alert('Ajout valider!');
+            window.location.href = '/';
+        } catch (error) {
+            console.log("Error message: ", error.message);
+            window.alert("Oups!! There is an internal problem , we are so sorry!")
+        }
+
     }
     const handleEdit = async () => {
-        await fetch('http://localhost:3001/api/book', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: formData.id,
-                title: formData.title,
-                author: formData.author,
-                year: formData.year,
-                page: formData.page,
-                language: formData.language,
-                type: formData.type,
-            }),
+        try {
+            const resp = await fetch('http://localhost:3001/api/book', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: formData.id,
+                    title: formData.title,
+                    author: formData.author,
+                    year: formData.year,
+                    page: formData.page,
+                    language: formData.language,
+                    type: formData.type,
+                }),
 
-        });
-        window.alert('Changement valider!');
-        window.location.href = '/';
+            });
+            if (!resp.ok) {
+                throw new Error("Error on fetching data when you want to update the book");
+            }
+            window.alert('Changement valider!');
+            window.location.href = '/';
+        } catch (error) {
+            console.log("Error message: ", error.message);
+            window.alert("Oups!! There is an internal problem , we are so sorry!");
+        }
     }
 
     return (

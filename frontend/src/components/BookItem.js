@@ -10,7 +10,6 @@ const BookItem = ({book, deleteBook}) => {
     
     const handleDelete = () => { 
         deleteBook(book.id); 
-        alert("The book is deleted !");
     }
 
     return (
