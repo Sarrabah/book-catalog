@@ -1,8 +1,8 @@
 let books = [
-    { id: 0, title: 'book1', author: 'author1', year: 2023, language: 'French', page: 200, type: 'Horror' },
-    { id: 1, title: 'book2', author: 'author2', year: 2020, language: 'English', page: 160, type: 'Romance' },
-    { id: 2, title: 'book3', author: 'author3', year: 2019, language: 'Frensh', page: 475, type: 'Fantasy' },
-    { id: 3, title: 'book4', author: 'author4', year: 2015, language: 'Arabic', page: 311, type: 'Autobiography' }
+    { id: "0", title: 'book1', author: 'author1', year: 2023, language: 'French', page: 200, type: 'Horror' },
+    { id: "1", title: 'book2', author: 'author2', year: 2020, language: 'English', page: 160, type: 'Romance' },
+    { id: "2", title: 'book3', author: 'author3', year: 2019, language: 'Frensh', page: 475, type: 'Fantasy' },
+    { id: "3", title: 'book4', author: 'author4', year: 2015, language: 'Arabic', page: 311, type: 'Autobiography' }
 ];
 const book = {
     getAllBooks: (res) => {

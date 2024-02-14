@@ -7,7 +7,7 @@ const BookList = () => {
     const [books, setBooks] = useState([]);
     const getbooks = async () => {
         try {
-            let response = await fetch('http://localhost:3001/api/books');
+            const response = await fetch('http://localhost:3001/api/books');
             if (!response.ok) {
                 throw Error("Error on fetching data to get all books");
             }
